@@ -17,7 +17,7 @@ def get_canvas_cred():
     key = os.getenv("CANVAS_API_KEY")
     return url, key
 
-class CanvasUser:
+class User:
     def __init__(self, url, key):
         self._canvas = Canvas(url, key)
         self._user = self._load_user(url, key)
@@ -41,15 +41,28 @@ class CanvasUser:
         user_data = resp.json()
         return self._canvas.get_user(user_data["id"])
 
+    @property
+    def user(self):
+        return self._user
+    
+    @property
+    def canvas(self):
+        return self._canvas
+
     def course_list(self):
         return [c for c in self._user.get_courses() if hasattr(c,"name")]
-        
+
+
 def main():
     API_URL, API_KEY = get_canvas_cred()
     
-    user = CanvasUser(API_URL, API_KEY)
+    user = User(API_URL, API_KEY)
+    
+    # for i in user.course_list():
+    #     print(i)
 
-    for i in user.course_list():
+    print(list(user.user.get_calendar_events_for_user()))
+    for i in user.user.get_files():
         print(i)
 
 if __name__ == "__main__":
