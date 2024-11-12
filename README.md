@@ -1,10 +1,25 @@
 # CanvasAIAssistant
-AI Assistant for Canvas
+AI Assistant for Canvas/Ed
 
-# Canvas Data Usage:
+## Dependencies:
+`python3.10+`
+
+`requirements.txt`
+
+`pip install -r requirements.txt` 
+
+## Canvas Data Scrapper Usage:
 - Login to Canvas
 - -> Account -> Settings -> + New Access Token
-- Copy Paste the Token
-- Paste into your local .env file as `CANVAS_API_KEY` and the `CANVAS_API_URL` as the base url that you use for canvas (i.e. https://elearning.mines.edu)
+- Save the token and the home canvas url in `.env`
+
+`cat .env`
+
+```
+CANVAS_API_URL="https://elearning.mines.edu"
+CANVAS_API_KEY="your_access_token_here"
+```
+
+##### Then to run...
 
 `./canvas.py`
