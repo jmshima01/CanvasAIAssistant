@@ -23,7 +23,10 @@ CANVAS_API_KEY="your_access_token_here"
 ##### Then to run...
 
 `./canvas.py`
+ 
+ or
 
+ `make canvas`
 
 ## Ed Usage edstem.org (ed.py):
 - Goto https://edstem.org/us/settings/api-tokens
@@ -36,3 +39,7 @@ ED_API_TOKEN="your_edstem_token_here"
 ```
 
 `./ed.py`
+
+or 
+
+`make ed`
