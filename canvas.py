@@ -58,10 +58,14 @@ def main():
     
     user = User(API_URL, API_KEY)
     
-    # for i in user.course_list():
-    #     print(i)
+    # example pull class list
+    for i in user.course_list():
+        print(i)
 
+    # example pull calendar
     print(list(user.user.get_calendar_events_for_user()))
+    
+    # example pull all user files
     for i in user.user.get_files():
         print(i)
 
