@@ -1,5 +1,5 @@
 # CanvasAIAssistant
-AI Assistant for Canvas/Ed
+AI Assistant for Canvas/Edstem
 
 ## Dependencies:
 `python3.10+`
