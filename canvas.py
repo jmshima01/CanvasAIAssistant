@@ -9,6 +9,7 @@ from dotenv import load_dotenv
 import requests
 import sys
 import traceback
+from datetime import datetime, timezone
 
 def get_canvas_cred():
     load_dotenv()
@@ -49,24 +50,75 @@ class User:
         return self._canvas
 
     def course_list(self):
-        return [c for c in self._user.get_courses() if hasattr(c,"name")]
+        return [self._canvas.get_course(i.course_id) for i in list(self._user.get_enrollments(type='StudentEnrollment'))]
+    
+    def course_ids(self):
+        return [i.course_id for i in list(self._user.get_enrollments(type='StudentEnrollment'))]
 
+    def enrollments(self):
+        return list(self._user.get_enrollments())
+
+    def user_files(self):
+        return list(self._user.get_files())
+
+    def calendar_events(self):
+        return list(self._user.get_calendar_events_for_user())
+    
 
 def main():
     API_URL, API_KEY = get_canvas_cred()
-    
     user = User(API_URL, API_KEY)
-    
-    # example pull class list
-    for i in user.course_list():
-        print(i)
 
-    # example pull calendar
-    print(list(user.user.get_calendar_events_for_user()))
+    # Get all courses
+    # print("User's Courses:")
+    # for course in user.course_list():
+    #     print(f"- {course.name}")
+
+    # due_assignments = {}
+    # current_time = datetime.now(timezone.utc)
+    # for course in user.course_list():
+    #     assignments = course.get_assignments()
+    #     for assignment in assignments:
+    #         # Check if the assignment has a due date and is still due
+    #         try:
+    #             if assignment.due_at:
+    #                 due_date = datetime.strptime(assignment.due_at, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
+    #                 if due_date > current_time:
+    #                     # Store assignment details
+    #                     if course.name not in due_assignments:
+    #                         due_assignments[course.name] = []
+                        
+    #                     due_assignments[course.name].append({
+    #                         "name": assignment.name,
+    #                         "description": assignment.description,
+    #                         "due_at": assignment.due_at,
+    #                         "points_possible": assignment.points_possible,
+    #                         "submission_types": assignment.submission_types,
+    #                         "html_url": assignment.html_url,
+    #                     })
+    #         except:
+    #             pass
+    # print("User's Assignments:")
+    # for course, assignments in due_assignments.items():
+    #     print(f"\nCourse: {course}")
+    #     for assignment in assignments:
+    #         print(f"  - Assignment for {course}: {assignment['name']}")
+    #         print(f"    Due At: {assignment['due_at']}")
+    #         print(f"    Points: {assignment['points_possible']}")
+    #         print(f"    Submission Types: {', '.join(assignment['submission_types'])}")
+    #         print(f"    Description: {assignment['description']}")
+    #         print(f"    URL: {assignment['html_url']}\n")
+    # print("-----------------------------")
     
-    # example pull all user files
-    for i in user.user.get_files():
-        print(i)
+    for i in user.course_ids():
+        files = user.canvas.get_course(i).get_files()
+        try:
+            for f in files:
+                print(f.download())
+        except Exception as e:
+            print(e)
+
+
 
 if __name__ == "__main__":
     main()
