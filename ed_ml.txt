@@ -1,0 +1,198 @@
+Authentication successful; logged in as [32mJames Shima[0m ([34mjamesshima@mines.edu[0m)
+STUDENT NAME: James Shima
+
+-------------------------
+(Group project) LLM group project final presentation date survey @ 2024-11-06T03:09:31.195624+11:00:
+"Hi all, Since our planned LLM presentation dates are around Thanksgiving, you may have different availability. Please fill out the following survey for your available dates. This will help us make arrangements. Thanks. https://forms.gle/Kb1XJWEntMFJ2q9v5 Dr. Zibo Wang"
+
+Answer: None
+
+-------------------------
+(Group project) LLM Project API key storage @ 2024-10-24T07:30:01.636755+11:00:
+"When uploading your code on github and making your final presentation for the LLM project, please be careful with how you store your API key. The best practice would be to store it in a .env file, but I am sure that there are other ways to do it. Do not upload it to any code on github. I believe OpenAI will automatically disable the key if it detects that it has been uploaded on github. Also, make sure that it is not visible in your final presentation. There were students that accidentally leaked their API key when I took the class. For any help with API key storage, please feel free to look up how to do it with a .env file, or reach out to me and I can help Zach Crennen"
+
+Answer: None
+
+-------------------------
+(General) Autograder feedback check @ 2024-10-05T03:18:28.852166+10:00:
+"If the autograder fails for you, double check that you have filled out the feedback section. It will give you a zero if there is no feedback"
+
+Answer: None
+
+-------------------------
+(General) Autograder issues @ 2024-10-05T02:25:29.3781+10:00:
+"If you have a notebook that fails all the autograder asserts but passes when you run it, please attach it here in a private Ed post. We will grade it manually and you will receive full credit as long as all of the asserts pass when we run it."
+
+Answer: None
+
+-------------------------
+(Group project) LLM final presentation date survey @ 2024-11-15T02:29:46.826132+11:00:
+"Hi all, Regarding the final presentation date survey, we have only received 80 responses from around 140 students. If you have not submitted the survey, please do so: https://forms.gle/Kb1XJWEntMFJ2q9v5 If you do not submit the survey by the end of this week, we will assume that you are available for both time slots in person. The final presentation schedule will be posted next week. Dr. Zibo Wang"
+
+Answer: None
+
+-------------------------
+(General) Thursday 12-1 OH cancelled @ 2024-11-15T00:40:16.017409+11:00:
+"I won't be able to hold my office hours on Thursday November 14th 12-1. Feel free to send me your questions via email!"
+
+Answer: None
+
+-------------------------
+(Assignments) Self-Check: GANs @ 2024-11-13T06:52:58.557726+11:00:
+"The self-check for today's class shows the quiz score as muted. Is there a way for us to see the score so we know if we need to retake the quiz? Thank you!"
+
+Answer: "You should be able to see now!"
+
+Comments:
+| "It still seems to be muted unfortunately"
+	| "That's interesting. I published again now, can you please check one more time?"
+		| "I was having the same issue. It seems to work now."
+
+-------------------------
+(Group project) Final Presentation Schedule @ 2024-11-13T03:48:53.405397+11:00:
+"When will we know which day we are presenting our final project?"
+
+Answer: "We are looking at the survey results. Will let you know on Thursday."
+
+-------------------------
+(Group project) LLM Final Project Due Date @ 2024-11-11T12:37:04.892812+11:00:
+"When is the final project due? I can't see it on canvas or the syllabus."
+
+Answer: "The video demonstration due is Nov 22nd. And you have a final presentation, it could be one of the last two day of classes."
+
+-------------------------
+(Assignments) Due day changing @ 2024-11-09T13:52:13.270629+11:00:
+"Due to the snow day, Kaggle final report and graduate unsupervised learning case study are now due on Monday. Dr. Zibo Wang"
+
+Comments:
+| "test for project parsing ed"
+	| "test"
+		| "test"
+
+-------------------------
+(Individual project) Project Report Extension due to Snowday @ 2024-11-09T13:48:09.674231+11:00:
+"Due to the snow day, I read that no academic activities or assessments worth any type of credit may be due on these days. For this reason, will the Kaggle Final Report get extended an extra day?"
+
+Answer: "Good question. It is now due on Monday."
+
+-------------------------
+(General) Dr. Wang OH cancelled Friday @ 2024-11-08T04:08:08.824186+11:00:
+"My office hours will be cancelled tomorrow 11 - 12. I will hold my office hours 9 - 10. You can send me an email if you have any questions. Dr. Zibo Wang"
+
+Answer: None
+
+-------------------------
+(Assignments) Question About Variable Naming in case study 2 assignment @ 2024-11-07T14:39:34.573756+11:00:
+"Hi everyone, While working on the case study 2 assignment, I noticed that in Feature Learning with PCA, steps 4 and 5, The variables clusters_custom_kmeans_pca and silhouette_custom_kmeans_pca seem different from the naming conventions used elsewhere, where similar variables are named clusters_kmeans_pca and silhouette_kmeans_pca. Could someone confirm if this difference in naming is intentional, or would it be acceptable to adjust the variable names to make them consistent with the rest of the code?"
+
+Answer: "This naming was created to highlight that we are using the custom function instead of the library function. You can change the name as long as you won't mess up those assert tests."
+
+Comments:
+| "Thank you!"
+
+-------------------------
+(General) Wednesday 12-1 OH on Zoom @ 2024-11-07T04:19:27.871058+11:00:
+"My office hours will be on zoom today."
+
+Answer: None
+
+-------------------------
+(Assignments) Activity 6 - Transfer Learning @ 2024-11-05T02:36:32.393403+11:00:
+"Hi, I just wanted to confirm: do we submit the Transfer Learning activity (Gradescope or Canvas) at all?"
+
+Answer: "No. There is no submission. You can use this activity for practice."
+
+-------------------------
+(Assignments) 5e gradescope @ 2024-11-01T13:16:14.678979+11:00:
+"On canvas it still says the 5e RNN activity is due Nov 1st, but there is no submission slot for it on gradescope. Is this activity cancelled?"
+
+Answer: "Their is a place for submission in the assignment on canvas at the bottom if you scroll down."
+
+Answer: "It is submitted on Canvas."
+
+-------------------------
+(Individual project) Kaggle final report due @ 2024-11-01T07:07:09.221801+11:00:
+"Hi all, I have received many requests to extend the deadline of the Kaggle final report. So we will give an extension to everyone for another week. The new deadline is Nov. 8th. Dr. Zibo Wang"
+
+Answer: None
+
+-------------------------
+(Assignments) Changes to unsupervised learning case study @ 2024-11-01T07:04:33.164798+11:00:
+"Hello graduate students, There is a problem with the unsupervised learning - feature learning case study. The custom silhouette score assert test is incorrect. Please change your assert statement from this: assert np.allclose(silhouette_avg, 0.3446, atol=1e-4) To this: assert np.allclose(silhouette_avg, 0.3397, atol=1e-2) The correct calculation should be 0.3397 Dr. Zibo Wang"
+
+Answer: None
+
+-------------------------
+(Individual project) Individual project question @ 2024-10-31T05:35:00.82339+11:00:
+"Is there a certain range that our score has to be on the Kaggle leaderboard?"
+
+Answer: "No. There is no requirement on performance. But we would like to see your improvement. Like how you modify your model to improve your performance from a lower score to a higher one."
+
+-------------------------
+(Assignments) Case Study 2 @ 2024-10-30T05:29:56.78334+11:00:
+"The Case Study 2 assignment isn't on Canvas anymore."
+
+Answer: "I think the Canvas reset also messed up this assignment. It is fixed now. Case Study 2: Visualization (CSCI 470) Let me know if you still have problems."
+
+-------------------------
+(General) Canvas Page Down @ 2024-10-30T02:29:17.978304+11:00:
+"It says the course is not published in Canvas for me and a couple of my friends."
+
+Comments:
+| "Looks like the problem has been resolved!"
+
+-------------------------
+(Assignments) 5d import troubles @ 2024-10-29T06:05:25.474503+11:00:
+"I tried to uncomment the import lines and run them, but I this is what outputted: What should I do about this?"
+
+Answer: "Try this code while remove the install pprint code from pprint import pprint"
+
+-------------------------
+(General) HiTA Module 5 @ 2024-10-25T06:54:16.453097+11:00:
+"Could HiTA be updated to have the rest of Module 5's content please?"
+
+Answer: "Updated now."
+
+-------------------------
+(Group project) LLM Project Tips @ 2024-10-24T09:01:06.392242+11:00:
+"Websites Many of you have discussed making a website to run your project. There are many ways to do this, but I would recommend streamlit as the easiest library to work with. You can make a website with just a few lines of code. See here: https://docs.streamlit.io/ OpenAI tools OpenAI has many types of APIs, including image generation, moderation (sentiment analysis to see if something is safe), text to speech, speech to text, and more. See them here: https://platform.openai.com/docs/models Video Optional, but consider making a video to demonstrate your project. This will help both in class for your final presentation, and if you want to show this to others outside of the class. Long prompts LLMs generally give better responses to longer and more detailed prompts. Try to engineer strong prompts for better results. Publishing/resume This will be one of your largest and coolest projects from your classes at Mines! This is great to put on your resume, and is easy to show off. Plus, you get to say that you worked with “AI”. Consider documenting the project well and trying to publish this on github and your resume. Make sure to check your project with Dr. Wang before making it public. LLM Project example I made an AI recipe generator for my LLM project, feel free to check it out and view the code here. This project was voted best in the class. https://github.com/zcrennen/AIChef. It also has some guides on how to use LangChain and streamlit in the spikes folder. Good luck!"
+
+Answer: None
+
+-------------------------
+(Assignments) 5c Autograder Timing Out @ 2024-10-23T06:27:47.856643+11:00:
+"Hi, I am finding that the 5c CNN autograder is timing out and I believe it is likely because some of the neural networks take a lot of time to train. Is there a way to fix this? Or will the autograder always fail due to the slow training? Thanks."
+
+Comments:
+| "Same here"
+
+-------------------------
+(Assignments) Case Study 2 Error @ 2024-10-19T11:52:37.219353+11:00:
+"I've been working through the Graduate Case Study 2 and I've encountered this error when working with the PCA data: IndexError Traceback (most recent call last) Cell In[22], line 5 2 from sklearn.decomposition import PCA 4 # Perform clustering on the original (non-PCA) data using Custom K-Means ----> 5 centroids_original, clusters_kmeans_original = custom_kmeans(scaled_data[features_to_scale].values, optimal_k) 7 # Compute the silhouette score for clustering on the original data 8 silhouette_kmeans_original = silhouette_score_custom(scaled_data[features_to_scale].values, clusters_kmeans_original) IndexError: only integers, slices (`:`), ellipsis (`...`), numpy.newaxis (`None`) and integer or boolean arrays are valid indices This is the code: from sklearn.decomposition import PCA centroids_original, clusters_kmeans_original = custom_kmeans(scaled_data[features_to_scale].values, optimal_k) silhouette_kmeans_original = silhouette_score_custom(scaled_data[features_to_scale].values, clusters_kmeans_original) print(f"Silhouette Score (Custom K-Means on Original Data with K={optimal_k}): {silhouette_kmeans_original:.4f}") The error is occurring outside of the code that says to add and is part of the already provided code, is there something I should change or edit in this part?"
+
+Answer: "It is hard to tell from this message. A few things you can check: 1. Is the custom_kmeans working properly? 2. Make sure the scaled_data[features_to_scale].values is a Numpy array 3. Make sure scaled_data is a data frame"
+
+-------------------------
+(General) Case Study 2 missing autograder block @ 2024-10-19T07:14:36.889266+11:00:
+"Case Study 2 was accidentally missing an autograder code block, so it was failing the autograder at all times. I have uploaded a new version of the assignment with the autograder block. If you have NOT yet started the assignment: - the assignment will be fine If you HAVE started the assignment: - please either work off of the new version of the file, or add this code block to the end of your notebook (but right before the feedback section). # Autograding with Otter Grader import otter grader = otter.Notebook() grader.check_all() Please continue to let us know if you have issues with the autograder, apologies if there is a delay in our response. Zach Crennen"
+
+Answer: None
+
+-------------------------
+(General) HiTA modules @ 2024-10-17T07:28:17.653334+11:00:
+"Could the HiTA AI for CSCI470 be updated to have content from Modules 4 and 5. Currently it only has the notes from Modules 1-3. The AI is really useful for creating overview guides and is helpful when studying the topics."
+
+Answer: "Sure. I will update those."
+
+-------------------------
+(Assignments) 5A dropout tests typo @ 2024-10-12T08:20:35.279233+11:00:
+"Hi, For the 5a deep learning activity, I think there might be a typo issue with the dropout tests. for i,layer in enumerate(layers): if i not in [1,3]: assert isinstance(d_layers[i], keras.layers.Dense) assert layer.weights[1].shape == [100, 0, 100, 0, 100, 1][i] it enumerates over layers and not d_layers, so I keep failing the shape test with an out of range error since layers has less elements than d_layers. It ran fine in colab but not on the autograder. When I changed the line to this for i,layer in enumerate(d_layers): I passed all the tests on gradescope. I just wanted to point this out incase anyone else was having this problem."
+
+Answer: "I couldn't figure this out when turning it in can we receive points back?"
+
+-------------------------
+(Assignments) 5a assignment typo @ 2024-10-09T08:00:47.406221+11:00:
+"There is a typo in the 5a deep learning assignment. The number of epochs should be 20 in the description below: Now we'll train the model for 50 epochs with a batch size of 1000. This means the following: The training set will be split into batches, each composed of 1000 samples. Each batch will be processed by the neural network to produce 1000 predications. The predictions will be compared against the targets to compute the losses. The loss values are passed backwards through the network to compute the loss gradients for those 1000 samples. Via the SGD procedure, the averages of those 1000 gradients are used to update the model's parameters. After all batches have been processed in this manner, one "epoch" has been completed. This is done again and again until the number of specified epochs (50) are completed."
+
+Answer: None
+

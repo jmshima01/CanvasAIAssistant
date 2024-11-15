@@ -1,7 +1,6 @@
 #!/bin/env python3
 """
 @author James Shima
-11/12/24
 """
 from canvasapi import Canvas
 import os
@@ -10,6 +9,7 @@ import requests
 import sys
 import traceback
 from datetime import datetime, timezone
+import re
 
 def get_canvas_cred():
     load_dotenv()
@@ -51,7 +51,7 @@ class User:
 
     def course_list(self):
         return [self._canvas.get_course(i.course_id) for i in list(self._user.get_enrollments(type='StudentEnrollment'))]
-    
+        
     def course_ids(self):
         return [i.course_id for i in list(self._user.get_enrollments(type='StudentEnrollment'))]
 
@@ -60,9 +60,6 @@ class User:
 
     def user_files(self):
         return list(self._user.get_files())
-
-    def calendar_events(self):
-        return list(self._user.get_calendar_events_for_user())
     
 
 def main():
@@ -70,55 +67,77 @@ def main():
     user = User(API_URL, API_KEY)
 
     # Get all courses
-    # print("User's Courses:")
-    # for course in user.course_list():
-    #     print(f"- {course.name}")
+    print("COURSES:")
+    for course in user.course_list():
+        print(f"- {course.name} : {course.id}")
 
-    # due_assignments = {}
-    # current_time = datetime.now(timezone.utc)
-    # for course in user.course_list():
-    #     assignments = course.get_assignments()
-    #     for assignment in assignments:
-    #         # Check if the assignment has a due date and is still due
-    #         try:
-    #             if assignment.due_at:
-    #                 due_date = datetime.strptime(assignment.due_at, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
-    #                 if due_date > current_time:
-    #                     # Store assignment details
-    #                     if course.name not in due_assignments:
-    #                         due_assignments[course.name] = []
+    print("\nDUE ASSIGNMENTS:")
+    due_assignments = {}
+    current_time = datetime.now(timezone.utc)
+    for course in user.course_list():
+        assignments = course.get_assignments()
+        for assignment in assignments:
+            # Check if the assignment has a due date and is still due
+            try:
+                if assignment.due_at:
+                    due_date = datetime.strptime(assignment.due_at, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
+                    if due_date > current_time:
+                        # Store assignment details
+                        if course.name not in due_assignments:
+                            due_assignments[course.name] = []
                         
-    #                     due_assignments[course.name].append({
-    #                         "name": assignment.name,
-    #                         "description": assignment.description,
-    #                         "due_at": assignment.due_at,
-    #                         "points_possible": assignment.points_possible,
-    #                         "submission_types": assignment.submission_types,
-    #                         "html_url": assignment.html_url,
-    #                     })
-    #         except:
-    #             pass
-    # print("User's Assignments:")
-    # for course, assignments in due_assignments.items():
-    #     print(f"\nCourse: {course}")
-    #     for assignment in assignments:
-    #         print(f"  - Assignment for {course}: {assignment['name']}")
-    #         print(f"    Due At: {assignment['due_at']}")
-    #         print(f"    Points: {assignment['points_possible']}")
-    #         print(f"    Submission Types: {', '.join(assignment['submission_types'])}")
-    #         print(f"    Description: {assignment['description']}")
-    #         print(f"    URL: {assignment['html_url']}\n")
-    # print("-----------------------------")
+                        due_assignments[course.name].append({
+                            "name": assignment.name,
+                            "description": assignment.description,
+                            "due_at": assignment.due_at,
+                            "points_possible": assignment.points_possible,
+                            "submission_types": assignment.submission_types,
+                            "html_url": assignment.html_url,
+                        })
+            except: pass
+
+    for course, assignments in due_assignments.items():
+        print(f"\nCourse: {course}")
+        for assignment in assignments:
+            print(f"    Assignment for {course}: {assignment['name']}")
+            print(f"    Due At: {assignment['due_at']}")
+            print(f"    Points: {assignment['points_possible']}")
+            print(f"    Submission Types: {', '.join(assignment['submission_types'])}")
+            print(f"    Description: {assignment['description']}")
+            print(f"    URL: {assignment['html_url']}\n")
     
-    for i in user.course_ids():
-        files = user.canvas.get_course(i).get_files()
+    # download all pdfs if want to...
+    # wanted_course_ids = [67414,69225,69213]
+    # want = re.compile(".*[sS]yllabus.*|.*\.pdf")
+    # for i in wanted_course_ids:
+    #     files = user.canvas.get_course(i).get_files()
+    #     try:
+    #         for f in files:
+    #             if want.match(str(f)):
+    #                 f.download(f"files/{f}")
+    #     except Exception as e:
+    #         pass
+    
+    print("CURRENT GRADES:")
+    size=0
+    for enrollment in user.user.get_enrollments():
+        size += 1
+
+    for course in user.user.get_enrollments(type="StudentEnrollment"):
         try:
-            for f in files:
-                print(f.download())
+            grade = course.grades
+            print(user.canvas.get_course(course.course_id).name, grade["current_score"],grade["current_grade"])      
         except Exception as e:
-            print(e)
-
-
+            pass
+    
+    for course in user.course_list():
+        print(f"\nPAGES for {course.name}:")
+        try:
+            for page in course.get_pages():
+                page_html = course.get_page(page.url).body
+                print(page_html)
+        
+        except: print("None")
 
 if __name__ == "__main__":
     main()

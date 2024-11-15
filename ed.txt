@@ -1,0 +1,247 @@
+Authentication successful; logged in as [32mJames Shima[0m ([34mjamesshima@mines.edu[0m)
+STUDENT NAME: James Shima
+
+-------------------------
+(General) Office Hours Link @ 2024-09-14T01:53:55.178728+10:00:
+"My office hours from hence forth will be held at this Microsoft Teams link: https://teams.microsoft.com/l/meetup-join/19%3ameeting_NWIyOTgzOGYtMDFkMy00OGViLTg4ZDAtNTk5NDI4MmI3NDk4%40thread.v2/0?context=%7b%22Tid%22%3a%22997209e0-09b3-4623-9a4d-76afa44a675c%22%2c%22Oid%22%3a%225a25e4d4-1b9f-41a5-be2a-11d91596fc88%22%7d. You should be able to access Microsoft Teams with your Mines account, though logging in should not be required. My office hours are from 11:30 to 1:30 Mountain time, or by appointment (in which case we may use a different link). I am unfortunately not able to create breakout rooms as I am on Linux, and they have bizarrely not allowed this feature to work on Linux. (Do not ask me why.) In the case that breakout rooms prove necessary, I will create a second meeting and invite students to it in small groups."
+
+Answer: None
+
+-------------------------
+(General) CSCI 564 Style Guide @ 2024-09-17T07:00:22.213888+10:00:
+"For Homework 1 and further homework assignments, as well as exams, we have assembled a style guide. This guide covers requirements for proof writing and techniques, as well as use of LaTeX and proper mathematical formatting. This guide will be posted on Canvas as well. Please review it and use it to ensure your work is properly formatted for future homework assignments."
+
+Answer: None
+
+-------------------------
+(Assignments) HW 3 question 3 - "palindrome" clarification @ 2024-11-14T02:42:02.091738+11:00:
+"For this question, are strings with an odd-numbered length included in the set of palindromes?"
+
+Answer: "11011 has an odd number length and is a palindrome, so it should be able to be recognized by the TM."
+
+Comments:
+| ""A man, a plan, a canal - Panama" is a palindrome too, but it wouldn't exactly be practical to work with. I'm asking what strings question 3 of the homework is intended to include."
+	| "well, for that to actually be a palindrome it should be amanaplanacanalpanama which is not different to work with compared to other palindromes. It says recognizes some palindrome which means that it should work with any palindrome."
+		| "That's how you are defining a palindrome. Other definitions, for example Wikipedia's definition, allow for capitalization, spaces, etc. I am asking how question 3 of the homework defines a palindrome."
+			| "Spaces can be ignored in this problem depending on your approach. Gregory Bell is correct."
+				| "Great, thanks."
+
+-------------------------
+(Assignments) Project 2 Part 1 Example Inputs @ 2024-11-13T11:30:46.914544+11:00:
+"Howdy y'all. I'm working through project 2 right now and am trying to get started with part 1.a, but am not sure what form the inputs should take. More specifically, I'm not sure what an input for the bindings should look like, as there are no example cases provided for the dpll-unit-propagate function. I was able to get something from the sat examples for what the maxterms look like, but the bindings passed down there are just nil. Any hints or example cases would be very appreciated, thanks!"
+
+Answer: "Bindings is a list of variables like so, '(a b c) or '((not a) b (not c)). It represents all the assignments you've used up to that point, play around with maxterm-bind if you want a better idea."
+
+-------------------------
+(Assignments) Parse Trees @ 2024-11-12T12:40:50.098779+11:00:
+"Hi! For problem 2, part a on Homework 2, if we decide to use parse trees to prove that the grammar is ambiguous, can we hand draw the parse trees? I thought I remember hearing that this was okay at office hours but I just wanted to make sure, thank you!"
+
+Answer: "I will accept them."
+
+-------------------------
+(Problem Sets) Office Hour Canceled Today @ 2024-11-12T08:40:13.073046+11:00:
+"Due to veteran's day and family, I need to cancel my office hours today. I know that it is for 400 but quite a few of you frequent them often so I thought I would announce this here. Also, if anyone needs help, I should still be able to answer emails."
+
+Answer: None
+
+-------------------------
+(Assignments) Does the language in Question 1 accept the empty string? @ 2024-11-11T15:31:29.983076+11:00:
+"I know this was addressed in class already, but I have the memory of a goldfish. I would assume not since empty in reverse is still technically equal to empty."
+
+Answer: "Correct! Does not accept empty string"
+
+-------------------------
+(Assignments) HW 2 Writing out the Pumping Lemma @ 2024-11-11T09:45:46.601634+11:00:
+"If we are using the pumping lemma for CFLs on a language we create for a problem, do we need to fully write out the proof? Or can we just point out specific portions of the proof that don't work?"
+
+Answer: "Fully write out the proof unless it’s a language previously proven to be non-context free"
+
+-------------------------
+(Assignments) Order for cnf @ 2024-11-11T05:34:01.237946+11:00:
+"Does the order that our CNF expression comes out it matter? For example the example given in the project2.lisp file has: (or a (and b c)) (and (or a b) (or a c)) and ours outputted as: (AND (OR A C) (OR A B)) I know they are equivalent, just wanted to see if it would mess up the test cases."
+
+Answer: "If we're assuming they're using the same logic from Project 1's simplify-regex, it should be the case that it doesn't matter so long as it's equivalent"
+
+-------------------------
+(Assignments) How to make grammars in Latex @ 2024-11-10T09:37:28.483994+11:00:
+"Is there a package I need to include to make the \bnfor that is included in the starter Latex to work? It says it is an undefined control sequence."
+
+Answer: "Are you trying it inside a \bnfprod{} instance, just within the grammar object, or outside of either of these?"
+
+Comments:
+| "I am using the provided latex template for problem 2, so it is inside a \bnfprod{}{}."
+	| "In that case I'm not entirely sure -- maybe you have a mismatched bracket somewhere affecting it"
+
+Answer: "Do you have ntdmath.sty? Literally all it does is insert a pipe between two spaces: \newcommand{\bnfor}{\ensuremath{\quad | \quad}}"
+
+Comments:
+| "I had ntdmath.sty but it may have been some old version because it did not have that line. Adding that line fixed the problem thank you."
+
+Answer: "I used the align environment"
+
+-------------------------
+(General) Office Hours Changed to 11:00 to 1:00 when Possible, 11:30 to 1:00 when not @ 2024-11-09T01:39:40.187777+11:00:
+"Unfortunately, my work has assigned me a weekly meeting that conflicts with the end of my normal office hours. As there are not supposed to be any significant meetings on Fridays, this frankly should not have happened. As such, I am moving my office hours slightly earlier. There are other associated schedule conflicts now with the beginning, but these are somewhat more variable. As such, my office hours now begin at 11:00 Mountain Time when I am able to be there early enough - that is most of the time, hopefully. At all other times, they will begin at 11:30 as they did before. Either way, they must conclude at 1:00 for my other obligations. I apologize greatly for any inconvenience this may cause. Please know that I did not choose for this to happen - it was imposed upon me by others."
+
+Answer: None
+
+-------------------------
+(General) Looking for a group @ 2024-11-08T14:58:41.650225+11:00:
+"Hi, looking for a learning group as to join."
+
+Answer: "Found one."
+
+-------------------------
+(Assignments) HW2 Usage of Past Proofs @ 2024-11-06T06:09:34.528455+11:00:
+"Are we allowed to use proofs we have done in class (such as LGAs) as lemmas on the homework as we do on exams?"
+
+Answer: "Luke has said in class that we are free to use any previously proven things on homeworks and exams. They aren’t lemmas though. They are just proofs."
+
+Comments:
+| "A lemma is just a proposition used to support the proof of another, so that term seems appropriate."
+
+-------------------------
+(General) Varying Grade Jumps @ 2024-11-05T10:31:14.102252+11:00:
+"From B- to A-, the difference in percent to jump a category is 3%. However, the difference in percent for A over A- is 7%, and B- over C is 6%. I was wondering the justification/reasoning for this, thanks!"
+
+Answer: "Great question -- this will make more sense when I draw out the bell curve tomorrow, but it's because they're based on the standard deviation of scores, with a small fudge factor. A-/B+ is on the mean, A is mean + 1 std dev, C is mean - 1 std dev. With this setup (normal distribution based curves) it would be unusual for there to be a fixed percentage between categories."
+
+-------------------------
+(General) Exam Score <60% Policy @ 2024-11-05T08:58:27.447767+11:00:
+"Since the mean and median midterm scores were below 60%, does the policy of needing one exam score >=60% to prevent dropping one letter grade still apply? Thanks"
+
+Answer: "No, that requirement will no longer apply. The peer evals on the project are being used to prevent "free riding" this semester, not exam scores. Another thing I'll be discussing tomorrow!"
+
+-------------------------
+(Assignments) Homework 2 P1 @ 2024-11-05T05:11:47.731621+11:00:
+"Can our CFG for problem 1 on homework 2 be ambiguous? Thanks."
+
+Answer: "Yes"
+
+-------------------------
+(Assignments) Project 1 Code Grades Released. @ 2024-11-04T13:57:46.345993+11:00:
+"Project 1 code grades have been posted on Gradescope under the assignment called 'Project-1-Code-Grade'. If you have questions about specific details regarding your code or the grading process feel free to ask."
+
+Answer: None
+
+-------------------------
+(Assignments) Wumpus 2 @ 2024-11-02T11:52:35.251673+11:00:
+"For 2a and 2b on the wumpus question, do we answer based on the full des or on our specification or both."
+
+Answer: "Both."
+
+-------------------------
+(Assignments) dfa-optimize not correct after all correct steps @ 2024-11-02T05:47:27.371788+11:00:
+"So I have a dfa-optimize function that uses Brzozowski's algorithm. I have a dfa that accepts 0*1*, but when I run Brozozowski's algorithm I get a dfa that still matches 0*1* but has more states, thus not getting a minimum. Every step of my algorithm looks correct, I have posted each step below. Thus I am questioning the correctness of Brzozowski's algorithm, or am I missing something in one of my steps? Any assistance would be appreciated. Start with DFA-4 (accepts 0*1*): (reverse (dfa-4)) (nfa->dfa (reverse (dfa-4)) (reverse (nfa->dfa (reverse dfa-4))) (nfa->dfa (reverse (nfa->dfa (reverse dfa-4)))) The result is an output dfa that still matches 0*1* but isn't minimized, although each step of the algorithm looks correct to me. There are no dead states or unreachable states anywhere that might throw off the algorithm. I have also posted my code, I would be incredibly grateful for any assistance."
+
+Answer: "The solution is to make a helper function who before nfa->dfa creates a new start state that is the set of states that the start you made in reverse is epsilon-ed to which does not include the gensym-ed state you make in reverse."
+
+Comments:
+| "Sorry, I am a little confused. what does the gensym mean in the gensym-ed state? Also, which nfa->dfa are you talking about, on the first or the second? Do you happen to have a picture or a way to describe this new start state? I would appreciate it!"
+	| "My apologies I forgot that we gave you a 'newstart' function. Gensym generates a new symbol for usage, it can be used to create a new state during the reverse function, I presume that you likely used newstart rather than gensym. I am speaking of both nfa->dfa functions, naturally reverse will generate two new start states potentially and we want them both gone. I have a good picture: new0 is the state I speak of, we want it not to exist, we can achieve this through a clever use of e-closure and remove."
+		| "Does this make sense?"
+			| "Ok, do you think this would work? Create a new state of e-closure of start, called new-set. From new-set, for each node in new-set, draw a new edge from new-set that would have originally existed before creating new-set. In this case it would be two edges, both from new-set to q0 and with values 1, 2. Thanks a lot for the help!"
+				| "Exactly that!"
+					| "Just don't forget to not include new0 in the FA."
+						| "Awesome, thanks a lot, I appreciate the help!"
+							| "No problemo."
+								| "Is this a correct understanding of how that new state would look after it is created?"
+									| "The first one is correct. The second one is incorrect"
+										| "How would I correct the second one? Should it have transitions to separate q1 and q2 states that mirror the original ones? Or would it be different?"
+											| "Oh wait, my apologies, I misread the second one, I assumed that q1 and q2 did not have self transitions on them but they do. Your answers are correct, my sincerest apologies again."
+												| "Are you sure? Bottom left does not recognize "121" while bottom right does."
+													| "Dang you are right, sorry again, the result ought to have theset of q1 and q2, but also keep q1 and q2, still the gensym-ed state is gone and thats what matters for nfa->dfa."
+														| "Trying to think of the easiest way to implement this, would it matter if we kept the q2 and q1 in the original graph (top right) as well, they would just become unreachable states, as (q1 q2) would have no reason to give them an incoming transition. Disregard, I believe it does matter."
+
+-------------------------
+(Assignments) Submitting DES @ 2024-11-02T05:23:45.955834+11:00:
+"How do we submit the DES for the first wumpus question, I have read other posts saying that the DES can be quite large. My DES is quite large so I am wondering if we separately submit an svg or have a small picture in the latex."
+
+Answer: "Have a picture in the latex file, it can take up a page if it needs to."
+
+Comments:
+| "If it cannot fit in the page can we submit a separate PDF?"
+	| "Could you email it to me, I am very curious now."
+		| "sent"
+			| "To onlookers, all is good, his DES is good."
+
+-------------------------
+(Assignments) Formatting for submission of code @ 2024-11-02T03:01:40.776492+11:00:
+"For submission of our code, like Project-0, should we remove all code that isn't the required functions or helper functions? Can comments stay? Thanks."
+
+Answer: "You may remove them if you wish, the autograder ignores everything but the functions we tell you to make."
+
+-------------------------
+(Assignments) regex->nfa function @ 2024-11-01T07:37:13.207396+11:00:
+"Are we assuming that the regex that are being passed into this function are already simplified? Or are we expected to call simplify-regex before starting it?"
+
+Answer: "You may assume that they are simplified."
+
+-------------------------
+(Assignments) move-e-closure and initial :epsilon transitions @ 2024-11-01T06:51:36.363696+11:00:
+"For move-e-closure, should we run the e-closure on the set of states initially passed in before transitioning from that set of states on the given symbol? Or only if given in an :epsilon symbol should we run an e-closure on the given set of states?"
+
+Answer: "e-closure should be called at every step regardless of presence of :epsilon symbols."
+
+Comments:
+| "So to make sure I understand, for the following NFA, (move-e-closure nfa q0 1) -> (q0 q1 q2 q3)? As opposed to (q1 q2)?"
+	| "Yes."
+
+-------------------------
+(Assignments) Project 1 Wumpus Question Clarification @ 2024-11-01T06:22:30.633065+11:00:
+"Is question 2 referring to any potential map or just the one that question 1 is based off of? In addition, when constructing a specification does this mean we are listing assumptions/rules that the human is doing to avoid the wumpus and escape, or do we need to produce the DES?"
+
+Answer: "I had it confirmed that the specification is essentially creating a DES where you dictate the human moves in response to what the wumpus does. So you could say first the human makes a move, and then based on that the wumpus could do 2 different things and you would decide what move the human should make for each of those moves and so forth. I am also waiting on this answer about question 2a. Assuming you constructed your specification properly, it seems trivial to prove the human can avoid being eaten, you just simply show the eaten state is unreachable in the specification. So I am confused"
+
+Comments:
+| "The specification needs to be regular, innately it needn't be a DES, but a DES does work. Yes, it is trivial to prove that a human can avoid being eaten through emptiness."
+
+Answer: "If you make any assumptions you should include them, things like death escape precedence can be relevant and we allow students assumptions to be the truth regarding that. That said of course, assumptions which go against the rules of the problem will not be accepted IE (nonrandom wumpus movement) It is based off the square map from question 1."
+
+-------------------------
+(Assignments) Report 1 Q1 @ 2024-11-01T05:19:06.46635+11:00:
+"Hello! I was wondering if you wanted the commands or a screen shot of the results of running both the greps. Thank you!"
+
+Answer: "The commands and a screenshot or text copy of the result is desired."
+
+-------------------------
+(Assignments) Report 1 Grammar @ 2024-10-31T14:41:21.220968+11:00:
+"Given that I and many others have lost points for grammar errors in our past assignments, if I do not fix the grammar error in the report that is already there (as shown above) will I lose points?"
+
+Answer: "Per the style guide: This would indicate that grammar errors made by the creators of the template are not subject to penalties."
+
+-------------------------
+(Assignments) DFA Intersection alphabets @ 2024-10-31T11:21:56.255213+11:00:
+"Can we assume the two DFA's share the same alphabet?"
+
+Answer: "No."
+
+-------------------------
+(Assignments) DFA Intersection @ 2024-10-31T08:07:29.439765+11:00:
+"For dfa intersection should the product dfa we return be the dfa which recognizes the language that is the intersection of the languages recognized by the two dfas or literally the intersection between the two dfas (ie. return the dfa of only the states, edges, etc. that are the same in both dfas)?"
+
+Answer: "The former not the latter, which is neatly accomplished by a product function and a nifty helper for the accept states."
+
+-------------------------
+(General) Office Hours Friday Possibly Delayed, Blood Donation @ 2024-10-30T23:57:39.299729+11:00:
+"I will be donating blood on Friday 90 minutes before my office hours are held. As I am doing a non-standard donation (double red) and the clinic is a reasonable walk from where I live, I do not know exactly how long it will take. I will start my office hours as close to their normal starting time of 11:30 Mountain Time as possible, but they may be delayed slightly as a result of this. Regardless, I hope to see you there!"
+
+Answer: None
+
+-------------------------
+(Assignments) Regex->NFA Missing Arguments, Empty Sets @ 2024-10-30T17:22:26.325618+11:00:
+"Our interpretation of the regular expressions for the project has been that NIL is the empty set, and that expressions with too few arguments would imply passing the empty set; i.e., $$\left(\texttt{:concatenation}\ \texttt{a}\right)\equiv\left(\texttt{:concatenation}\ \texttt{a}\ \texttt{NIL}\right)\equiv\varnothing$$ $$\left(\texttt{:concatenation}\right)\equiv\left(\texttt{:concatenation}\ \texttt{NIL}\ \texttt{NIL}\right)\equiv\varnothing$$ $$\left(\text{:union}\ \text{a}\right)\equiv\left(\text{:union}\ \text{a}\ \texttt{NIL}\right)\equiv\left\{\texttt{a}\right\}$$ $$\left(\texttt{:union}\right)\equiv\left(\texttt{:union}\ \texttt{NIL}\ \texttt{NIL}\right)\equiv\varnothing$$ $$\left(\texttt{:kleene-closure}\right)\equiv\left(\texttt{:kleene-closure}\ \texttt{NIL}\right)\equiv\left\{\epsilon\right\}$$ Is this the correct way to handle these edge cases?"
+
+Answer: "A concatenation on zero items is epsilon, not the empty set. A concatenation on one item is just that item, again not the empty set. It seems like you're assuming that union and concatenation are only "supposed" to have two arguments. They can have 0, 1, 2, 3, etc. We used reduce to handle this with all cases other than 0, but there may be other implementations that work."
+
+Comments:
+| "No, I know they're n-ary, it just seems they aren't well-defined when n is less than 2, hence what I have above. Consider that fa-union and fa-concatenate take exactly 2 arguments, so the reduce would not actually end up calling these if the args list is less than 2. If catenating zero items is epsilon and one is just the item, you're still making an assumption about these "missing" arguments; you're just assuming they get filled in with epsilon instead of the empty set. Why that assumption and not mine, when we already have an explicit symbol for epsilon? Edit: After thinking about it, I can see the argument for assuming epsilon in these places, and having the empty set only ever show up if NIL is explicitly passed as an argument. I'd still like confirmation from Luke or a TA about which is the correct approach, though."
+	| "fa-union and fa-concatenation behave exactly as Nate Graves describes. n-ary functions never behave differently with less than 2 arguments, as their definitions are innately recursive, they default to their logical base cases. Concatenation on a single value will concatenate that single value to nothing, and thereby returns only that value. Concatenation on nothing will return epsilon as it is concatenating no values together this leaves a simple empty string. Union on a single value will create an expression which accepts this value and no others, innately nothing happened, and the value is returned. Union on nothing must innately accept nothing, and that is of course what nil is."
+		| "This answer is still not satisfying to me; it seems like we're treating catenation and union differently for no reason. There are three basis sets (languages) for regular expressions: $$\texttt{a}\equiv\left\{\texttt{a}\right\},\ \epsilon\equiv\left\{\epsilon\right\}, \text{ and}\ \varnothing\equiv\left\{\right\}.$$ All regular expressions are sets defined by combinations of these basis sets under the three basis operators. We define catenation and union, on regular expressions A and B, as $$A\ B=\left\{ab\ \mid\ a\in A \wedge b \in B\right\}$$ $$A \mid B = \left\{ w\ \mid\ w \in A \vee w \in B \right\}$$ These have obvious n-ary extensions to more than two arguments, but not to fewer. Your description of catenation on one or zero arguments works if the missing argument(s) are assumed to be the empty string. But then for union you seem to assume that the missing argument(s) are the empty set. With the empty string assumption, it should be the case that $$\left(\texttt{:union}\ \texttt{a}\right)\equiv\left(\texttt{:union}\ \texttt{a}\ \epsilon\right)\equiv\left\{a,\ \epsilon\right\}$$ $$\left(\texttt{:union}\right)\equiv\left(\texttt{:union}\ \epsilon\ \epsilon\right)\equiv\left\{\epsilon\right\}$$ not {a} and {} as you suggest."
+			| "Literally yes: "Tour description of catenation on one or zero arguments works if the missing argument(s) are assumed to be the empty string. But then for union you seem to assume that the missing argument(s) are the empty set." This is because all n-ary functions have base cases which are their identity values in order to accurately represent what they would do when supplied no arguments. for example: + is n-ary and lisp in fact represents this as if you were to try this code (write (+)) it would evaluate to 0, as the + is adding nothing and so returns its effective form of nothing which is 0, just as concatenate and union return their respective forms of nothing which are epsilon and nil."
+				| "All n-ary functions have different identity values innately, as for each of them their form of nothing is different afterall they largely speaking do not do the same operation."
+					| "Ok, then we treat them differently. I can buy that. But what is the argument for union's identity being the empty set and catenation's the empty string? I don't remember seeing this in the textbook or slides. Further, which would be the identity for Kleene closure? I suppose it wouldn't matter, as either would just give the empty string, but I'm curious. Thank you for engaging my pedantry, btw."
+						| "I think it should be somewhere in one those, but the general reason is this: All n-ary functions by mathematical fact (this is a bigger topic which Dr. Yue's cryptography covers) must have some identity value further this means they can be represented by having infinity arguments even when we supply them with only 2, for instance with +: + 1 2 = + 1 2 0 0 0 0 0 0 0 0 0 0 ... Naturally with only 1 argument this is true: + 1 0 0 0 0 0 0 0 0 ..., consequently this evaluates to 1. And of course with 0 arguments we get + = + 0 0 0 0 0 0 0 0 ... = 0. The same applies to union and concatenation, union's identity value is innately the empty set, as anything unioned with it results in the original value. union (a) () = (a). For concatenation its innate value is epsilon as epsilon concatenated with anything is the original value. concat "a" "" = "a". Thereby when there is 0 arguments it is just: union () () () () ... = () concatenation "" "" "" "" .... = "" kleene-closure is not n-ary its 1-ary, so this does not apply. Does this make sense?"
+							| "Yes actually I get it now; thank you so much! One last small thing: Is (:kleene-closure) simply invalid then, or is it the empty string?"
+								| "Excellent, Its invalid, we won't test for that."
+
