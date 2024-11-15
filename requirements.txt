@@ -3,3 +3,5 @@ uvicorn
 canvasapi
 python-dotenv
 edapi
+openai
+langchain
