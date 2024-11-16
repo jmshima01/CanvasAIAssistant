@@ -119,9 +119,6 @@ def main():
     #         pass
     
     print("CURRENT GRADES:")
-    size=0
-    for enrollment in user.user.get_enrollments():
-        size += 1
 
     for course in user.user.get_enrollments(type="StudentEnrollment"):
         try:
