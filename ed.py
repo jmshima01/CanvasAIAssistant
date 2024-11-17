@@ -22,11 +22,10 @@ def print_treads(ed, threads):
         print("-------------------------")
         no_newline = " ".join(t["document"].split())
         
-        print(f'({t["category"]}) {t["title"]} @ {t["created_at"]}:\n\"{no_newline}\"\n')
+        print(f'Question: ({t["category"]}) {t["title"]} @ {t["created_at"]}:\n\"{no_newline}\"\n')
         
         if ed.get_thread(t["id"])["answers"]:
             for i in ed.get_thread(t["id"])["answers"]:
-
                 no_newline = " ".join(i["document"].split())
                 print(f'Answer: \"{no_newline}\"\n')
                 if i["comments"]:
@@ -38,7 +37,9 @@ def print_treads(ed, threads):
                         if not l["comments"]:
                             return
                         comments(l["comments"][0],j+1)
-                    comments(i["comments"][0],0)
+                    for c in i["comments"]:
+                        comments(c,0)
+                    
                     print()
         
         elif ed.get_thread(t["id"])["comments"]:
@@ -50,7 +51,8 @@ def print_treads(ed, threads):
                 if not l["comments"]:
                     return
                 comments(l["comments"][0],j+1)
-            comments(ed.get_thread(t["id"])["comments"][0],0)
+            for c in ed.get_thread(t["id"])["comments"]:
+                comments(c,0)
             print()        
         else:
             print("Answer: None\n")
