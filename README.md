@@ -1,5 +1,5 @@
-# CanvasAIAssistant
-AI Assistant for Canvas/Edstem
+# MarvinAI
+AI Assistant for Canvas and Edstem Discusion
 
 ## Dependencies:
 `python3.10+`
