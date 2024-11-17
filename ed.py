@@ -57,29 +57,26 @@ def print_treads(ed, threads):
         else:
             print("Answer: None\n")
         
-def post_on_ed():
-    pass
-    # discussion_soup, document = new_document()
-    # dis_a_paragraph = discussion_soup.new_tag("paragraph")
-    # dis_a_paragraph.string = f"this is a test :) "
-    # document.append(dis_a_paragraph)
+def post_on_ed(class_id, title, content, category=None):
+    
+    discussion_soup, document = new_document()
+    p = discussion_soup.new_tag("paragraph")
+    p.string = content
+    document.append(p)
 
-    # ed.post_thread(62781, {
-    # "type":  ThreadType.ANNOUNCEMENT,
-    #   "title": "This is an AI Agent: Testing",
-    #   "category": "THIS IS AI",
-    #   "subcategory": "HACKED",
-    #   "subsubcategory": "uwu",
-    #   "content": str(document),
-    #   "is_pinned": False,
-    #   "is_private": True,
-    #   "is_anonymous": True,
-    #   "is_megathread": True,
-    #   "anonymous_comments": False,
-    # },)
-
-    # resp = ed.session.post(urljoin("https://us.edstem.org/api/", f"threads/{5699131}/pin"))
-    # print(resp)
+    ed.post_thread(class_id, {
+    "type":  ThreadType.POST,
+      "title": title,
+      "category": "[MARVIN-AI-BETA]" if not category else category,
+      "subcategory": "",
+      "subsubcategory": "",
+      "content": str(document),
+      "is_pinned": False,
+      "is_private": False,
+      "is_anonymous": False,
+      "is_megathread": False,
+      "anonymous_comments": False,
+    },)
 
 if __name__ == "__main__":
     ed = EdAPI()
@@ -88,6 +85,6 @@ if __name__ == "__main__":
     
     student_name(user_info)
 
-    # ml
+    # ml ed discussion
     threads = ed.list_threads(62781)
     print_treads(ed,threads)
