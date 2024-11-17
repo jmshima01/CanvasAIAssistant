@@ -28,14 +28,12 @@ completion = client.chat.completions.create(
          Also if a post, add [MarvinAI-Beta] to the beginning of every post title and state you are an AI assistant for the student.\nLastly, here is the student's Canvas and Ed Data for you to refer:\n{s}"},
         {
             "role": "user",
-            "content": "what is my average grade right now?"
+            "content": "what is my average grade right now"
         }
     ]
 )
 
 response = completion.choices[0].message.content
-
-
 
 def post_on_ed(class_id, title, content, category=None):
     ed = EdAPI()
@@ -66,9 +64,11 @@ if is_post is not None:
         post = json.loads(str(is_post.group()))
         title = post["title"]
         content = post["content"]
+
+        # post in ML:
         post_on_ed(62781, title, content)
     except Exception as e:
-        print(f"Error handling ed post request: {e}")
+        print(f"Error posting question on ed request: {e}")
         sys.exit(1)
 else:
     print(response)
