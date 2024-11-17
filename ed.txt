@@ -197,4 +197,3 @@ Question: (Assignments) 5A dropout tests typo @ 2024-10-12T08:20:35.279233+11:00
 "Hi, For the 5a deep learning activity, I think there might be a typo issue with the dropout tests. for i,layer in enumerate(layers): if i not in [1,3]: assert isinstance(d_layers[i], keras.layers.Dense) assert layer.weights[1].shape == [100, 0, 100, 0, 100, 1][i] it enumerates over layers and not d_layers, so I keep failing the shape test with an out of range error since layers has less elements than d_layers. It ran fine in colab but not on the autograder. When I changed the line to this for i,layer in enumerate(d_layers): I passed all the tests on gradescope. I just wanted to point this out incase anyone else was having this problem."
 
 Answer: "I couldn't figure this out when turning it in can we receive points back?"
-

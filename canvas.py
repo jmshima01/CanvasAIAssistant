@@ -69,7 +69,7 @@ def main():
     # Get all courses
     print("COURSES:")
     for course in user.course_list():
-        print(f"- {course.name} : {course.id}")
+        print(f"- {course.name}")
 
     print("\nDUE ASSIGNMENTS:")
     due_assignments = {}
@@ -127,14 +127,14 @@ def main():
         except Exception as e:
             pass
     
-    for course in user.course_list():
-        print(f"\nPAGES for {course.name}:")
-        try:
-            for page in course.get_pages():
-                page_html = course.get_page(page.url).body
-                print(page_html)
+    # for course in user.course_list():
+    #     print(f"\nPAGES for {course.name}:")
+    #     try:
+    #         for page in course.get_pages():
+    #             page_html = course.get_page(page.url).body
+    #             print(page_html)
         
-        except: print("None")
+    #     except: print("None")
 
 if __name__ == "__main__":
     main()
