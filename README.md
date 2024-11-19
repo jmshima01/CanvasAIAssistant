@@ -43,3 +43,8 @@ ED_API_TOKEN="your_edstem_token_here"
 or 
 
 `make ed`
+
+
+## Ask a question (Work in progress with FastAPI):
+`./llm.py` 
+will ask a question and give a response or post to ed if asked
