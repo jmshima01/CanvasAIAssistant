@@ -57,7 +57,7 @@ def print_treads(ed, threads):
         else:
             print("Answer: None\n")
         
-def post_on_ed(class_id, title, content, category=None):
+def post_on_ed(ed, class_id, title, content, category=None):
     
     discussion_soup, document = new_document()
     p = discussion_soup.new_tag("paragraph")
@@ -73,64 +73,81 @@ def post_on_ed(class_id, title, content, category=None):
       "content": str(document),
       "is_pinned": False,
       "is_private": False,
-      "is_anonymous": False,
+      "is_anonymous": True,
       "is_megathread": False,
       "anonymous_comments": False,
     },)
 
 
-def get_threads(ed: EdAPI, threads, id):
-    s = f"Class Q&A (id={id}):\n"
-    print(s)
+def get_ed_courses(ed: EdAPI):
+    info = ed.get_user_info()
+    courses = {}
+    for c in info["courses"]:
+        c = c["course"]
+        if c["status"] == "active" and c["year"] == "2024" and c["session"] == "Fall":
+            courses[int(c["id"])] = c["name"]  
+
+    return courses
+
+def get_threads(ed: EdAPI, threads, id, name):
+    s = f"Ed-stem Q&A for {name} (id={id}):\n"
+    
     for t in threads:
         s+="-------------------------\n"
-        print("-----------------------")
+        
         no_newline = " ".join(t["document"].split())
         
-        print(f'Question id={t["id"]}: ({t["category"]}) {t["title"]} @ {t["created_at"]}:\n\"{no_newline}\"\n')
+        s+=f'Question id={t["id"]}: ({t["category"]}) {t["title"]} @ {t["created_at"]}:\n\"{no_newline}\"\n\n'
         
         if ed.get_thread(t["id"])["answers"]:
             for i in ed.get_thread(t["id"])["answers"]:
                 no_newline = " ".join(i["document"].split())
-                print(f'Answer: \"{no_newline}\"\n')
+                s+= f'Answer: \"{no_newline}\"\n\n'
                 if i["comments"]:
-                    print("Comments:")
-                    def comments(l,j):
+                    s+="Comments:\n"
+                    def comments(l,j,s):
                         tabs = "\t"*j+"| "
                         no_newline = " ".join(l["document"].split())
-                        print(f'{tabs}\"{no_newline}\"')
+                        
+                        s[0]+= f'{tabs}\"{no_newline}\"\n'
                         if not l["comments"]:
                             return
-                        comments(l["comments"][0],j+1)
+                        comments(l["comments"][0],j+1,s)
                     for c in i["comments"]:
-                        comments(c,0)
-                    
-                    print()
+                        g = [s]
+                        comments(c,0,g)
+                        s = g[0]
+                    s+="\n"
         
         elif ed.get_thread(t["id"])["comments"]:
-            print("Comments:")
-            def comments(l,j):
+            s+="Comments:\n"
+            def comments(l,j,s):
                 tabs = "\t"*j+"| "
                 no_newline = " ".join(l["document"].split())
-                print(f'{tabs}\"{no_newline}\"')
+                
+                s[0]+=f'{tabs}\"{no_newline}\"\n'
                 if not l["comments"]:
                     return
-                comments(l["comments"][0],j+1)
+                comments(l["comments"][0],j+1,s)
             for c in ed.get_thread(t["id"])["comments"]:
-                comments(c,0)
-            print()        
+                l = [s]
+                comments(c,0,l)
+                s = l[0]
+            s+="\n"        
         else:
-            print("Answer: None\n")
-
+            s+="Answer: None\n\n"
+    
+    return s
 
 if __name__ == "__main__":
     ed = EdAPI()
     ed.login()
     user_info = ed.get_user_info()
     
-    student_name(user_info)
+    # student_name(user_info)
 
     # ml ed discussion
-    threads = ed.list_threads(62781)
+    # threads = ed.list_threads(62781)
     # print_treads(ed,threads)
-    get_threads(ed,threads,62781)
+    # user_info = ed.get_user_info()
+    # print(get_threads(ed,ed.list_threads(62781),62781))
