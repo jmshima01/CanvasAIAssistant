@@ -78,6 +78,51 @@ def post_on_ed(class_id, title, content, category=None):
       "anonymous_comments": False,
     },)
 
+
+def get_threads(ed: EdAPI, threads, id):
+    s = f"Class Q&A (id={id}):\n"
+    print(s)
+    for t in threads:
+        s+="-------------------------\n"
+        print("-----------------------")
+        no_newline = " ".join(t["document"].split())
+        
+        print(f'Question id={t["id"]}: ({t["category"]}) {t["title"]} @ {t["created_at"]}:\n\"{no_newline}\"\n')
+        
+        if ed.get_thread(t["id"])["answers"]:
+            for i in ed.get_thread(t["id"])["answers"]:
+                no_newline = " ".join(i["document"].split())
+                print(f'Answer: \"{no_newline}\"\n')
+                if i["comments"]:
+                    print("Comments:")
+                    def comments(l,j):
+                        tabs = "\t"*j+"| "
+                        no_newline = " ".join(l["document"].split())
+                        print(f'{tabs}\"{no_newline}\"')
+                        if not l["comments"]:
+                            return
+                        comments(l["comments"][0],j+1)
+                    for c in i["comments"]:
+                        comments(c,0)
+                    
+                    print()
+        
+        elif ed.get_thread(t["id"])["comments"]:
+            print("Comments:")
+            def comments(l,j):
+                tabs = "\t"*j+"| "
+                no_newline = " ".join(l["document"].split())
+                print(f'{tabs}\"{no_newline}\"')
+                if not l["comments"]:
+                    return
+                comments(l["comments"][0],j+1)
+            for c in ed.get_thread(t["id"])["comments"]:
+                comments(c,0)
+            print()        
+        else:
+            print("Answer: None\n")
+
+
 if __name__ == "__main__":
     ed = EdAPI()
     ed.login()
@@ -86,5 +131,6 @@ if __name__ == "__main__":
     student_name(user_info)
 
     # ml ed discussion
-    threads = ed.list_threads(62886)
-    print_treads(ed,threads)
+    threads = ed.list_threads(62781)
+    # print_treads(ed,threads)
+    get_threads(ed,threads,62781)
