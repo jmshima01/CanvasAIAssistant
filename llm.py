@@ -47,13 +47,13 @@ def post_on_ed(class_id, title, content, category=None):
     ed.post_thread(class_id, {
     "type":  ThreadType.POST,
       "title": title,
-      "category": "[MARVIN-AI-BETA]" if not category else category,
+      "category": "Cowboy Coding Era" if not category else category,
       "subcategory": "",
       "subsubcategory": "",
       "content": str(document),
       "is_pinned": False,
       "is_private": False,
-      "is_anonymous": False,
+      "is_anonymous": True,
       "is_megathread": False,
       "anonymous_comments": False,
     },)
