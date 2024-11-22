@@ -1,4 +1,5 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 from canvas import User
 from ed import *
 from openai import OpenAI
@@ -15,6 +16,13 @@ self-hosted AI assistant server for Canvas LMS and Ed-stem Discussion
 
 app = FastAPI()
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allows all origins in development
+    allow_credentials=True,
+    allow_methods=["*"],  # Allows all methods
+    allow_headers=["*"],  # Allows all headers
+)
 # User session instances
 app.state.EdSession = None
 app.state.CanvasSession = None
@@ -33,7 +41,10 @@ def canvas_login(canvas_token: str, canvas_url="https://elearning.mines.edu"):
     
     login = User(canvas_url, canvas_token)
     if not login.user or not login.canvas: # bad url/token
-        return "Bad url or token"
+        raise HTTPException(
+            status_code=400,
+            detail="Bad url or token"
+        ) 
     
     app.state.CanvasSession = login
     app.state.canvas_data = login.basic_user_scrape()
@@ -46,7 +57,10 @@ def edstem_login(ed_token: str):
         ed = EdAPI()
         ed.login()
     except:
-        return 1
+        raise HTTPException(
+            status_code=400,
+            detail="Unable to login to ed-stem"
+        )
     
     app.state.EdSession = ed
     return 0
@@ -54,9 +68,18 @@ def edstem_login(ed_token: str):
 @app.post("/login/openai")
 def openai_login(api_key: str):
     try:
+        print(api_key)
         login = OpenAI(api_key=api_key)
+        login.chat.completions.create(
+            model="gpt-3.5-turbo",
+            messages=[{"role": "user", "content": "test"}],
+            max_tokens=1  # Minimum tokens to minimize costs
+        )
     except:
-        return 1
+        raise HTTPException(
+            status_code=400,
+            detail="Unable to login to OpenAI"
+        )
     
     app.state.OpenAISession = login
     return 0
@@ -75,7 +98,11 @@ def edstem_choose_thread(course_id: int):
         # only grabbing first 50 threads for relavance and token limitations...
         app.state.ed_data = get_threads(app.state.EdSession, app.state.EdSession.list_threads(course_id, limit=50), course_id, get_ed_courses(app.state.EdSession)[course_id])
         return app.state.ed_data
-    return "No ed session" 
+    
+    raise HTTPException(
+            status_code=400,
+            detail="No Ed Session Found"
+        ) 
 
 
 @app.get("/ask/canvas")
@@ -97,8 +124,15 @@ def ask_canvas(question: str):
 
             return chat.choices[0].message.content
         else:
-            return "Failed no OpenAI session found"
-    else: return "Failed no Canvas session found"
+            raise HTTPException(
+            status_code=400,
+            detail="No OpenAI Session Found"
+        ) 
+    else:
+        raise HTTPException(
+            status_code=400,
+            detail="No Canvas Session Found"
+        ) 
 
     
 @app.get("/ask/ed")
@@ -135,6 +169,12 @@ def ask_ed(question: str):
             else:
                 return response
         else:
-            return "No Open AI Session Found"
+            raise HTTPException(
+            status_code=400,
+            detail="No OpenAI Session Found"
+        ) 
     else:
-        return "No Ed data found"
+        raise HTTPException(
+            status_code=400,
+            detail="No Ed Session Found"
+        ) 
