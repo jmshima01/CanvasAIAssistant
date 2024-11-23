@@ -77,68 +77,6 @@
       </v-col>
     </v-row>
   </v-container>
-
-  <!-- Chat Section - Now always visible -->
-  <v-container>
-    <v-row>
-      <v-col cols="12" md="8">
-        <v-card class="mb-6" height="400" elevation="2">
-          <v-card-text class="chat-container overflow-y-auto">
-            <template v-for="(message, index) in messages" :key="index">
-              <!-- User Message -->
-              <div v-if="message.type === 'user'" class="d-flex justify-end mb-4">
-                <v-card color="primary" class="rounded-lg" max-width="70%">
-                  <v-card-text class="text-white">
-                    {{ message.content }}
-                  </v-card-text>
-                </v-card>
-              </div>
-
-              <!-- Assistant Message -->
-              <div v-else class="d-flex justify-start mb-4">
-                <v-card class="rounded-lg" max-width="70%">
-                  <v-card-text>
-                    {{ message.content }}
-                  </v-card-text>
-                </v-card>
-              </div>
-            </template>
-
-            <!-- Loading indicator -->
-            <div v-if="chatLoading" class="d-flex justify-start mb-4">
-              <v-card class="rounded-lg" max-width="70%">
-                <v-card-text>
-                  <v-progress-circular indeterminate></v-progress-circular>
-                </v-card-text>
-              </v-card>
-            </div>
-          </v-card-text>
-        </v-card>
-
-        <!-- Input Area -->
-        <v-form @submit.prevent="sendMessage">
-          <div class="d-flex">
-            <v-text-field
-              v-model="userInput"
-              placeholder="Type your message..."
-              :disabled="chatLoading"
-              @keyup.enter="sendMessage"
-              hide-details
-              class="mr-2"
-            ></v-text-field>
-            <v-btn
-              color="primary"
-              type="submit"
-              :loading="chatLoading"
-              :disabled="!userInput.trim()"
-            >
-              Send
-            </v-btn>
-          </div>
-        </v-form>
-      </v-col>
-    </v-row>
-  </v-container>
 </template>
 
 <script>
@@ -158,11 +96,6 @@ export default {
       openaiSuccess: false,
       canvasSuccess: false,
       edStemSuccess: false,
-
-      // Chat data
-      messages: [],
-      userInput: '',
-      chatLoading: false,
     }
   },
 
@@ -254,60 +187,8 @@ export default {
       }
     },
 
-    async sendMessage() {
-      if (!this.userInput.trim() || this.chatLoading) return;
-
-      this.messages.push({
-        type: 'user',
-        content: this.userInput.trim()
-      });
-
-      const userMessage = this.userInput.trim();
-      this.userInput = '';
-      this.chatLoading = true;
-
-      try {
-        const response = await fetch(`http://127.0.0.1:8000/ask/canvas?question=${encodeURIComponent(userMessage)}`, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-          }
-        });
-
-        if (!response.ok) {
-          throw new Error('API request failed');
-        }
-
-        // Get response as text since it returns a string
-        const data = await response.text();
-        
-        this.messages.push({
-          type: 'assistant',
-          content: data
-        });
-
-      } catch (error) {
-        console.error('Error:', error);
-        this.messages.push({
-          type: 'assistant',
-          content: 'Sorry, I encountered an error processing your request.'
-        });
-      } finally {
-        this.chatLoading = false;
-        this.$nextTick(() => {
-          this.scrollToBottom();
-        });
-      }
-    },
-
-    scrollToBottom() {
-      const container = document.querySelector('.chat-container');
-      if (container) {
-        container.scrollTop = container.scrollHeight;
-      }
-    }
-  },
-}
+ 
+}}
 </script>
 
 <style scoped>
