@@ -51,10 +51,13 @@
           <v-window-item value="ed">
             <v-container>
               <!-- Add your ed content here -->
-              <ChatComponent 
-          api-endpoint="http://127.0.0.1:8000/ask/ed"
-          placeholder="Ask a question about ed... Ask Marvin to post for you..."
-          />
+              <EdCourseSelector @course-selected="handleCourseSelection"/>
+      <!-- Your existing chat component -->
+      <ChatComponent 
+        v-if="selectedEdCourse"
+        api-endpoint="http://127.0.0.1:8000/ask/ed"
+        placeholder="Ask an Ed question..."
+      />
             </v-container>
             
           </v-window-item>
@@ -67,14 +70,24 @@
 <script>
 import HelloWorld from './components/HelloWorld.vue';
 import ChatComponent from './components/ChatComponent.vue';
+import EdCourseSelector from './components/EdCourseSelector.vue';
 export default {
   name: 'NavigationTabs',
   data() {
     return {
       activeTab: 'login', // Default active tab
+      selectedEdCourse: null,
     }
   },
   methods: {
-  }
+    handleCourseSelection(course) {
+      this.selectedEdCourse = course
+      console.log('Course selected:', course)
+    }
+  },
+  components: {
+    EdCourseSelector,
+    ChatComponent,
+  },
 }
 </script>
