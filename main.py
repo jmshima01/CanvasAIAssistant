@@ -153,15 +153,14 @@ def ask_ed(question: str):
                 model="gpt-4o",
                 messages=[
                     {"role": "system", "content": f"You are a assistant for Ed-stem a Q&A. \
-                    Answer the student's question.\
-                    In addition, if the student requests you to post or ask something on ed for them, only return a single python dictionary with the \
-                    fields...\ntitle: \"title_of_student_post\"content: \"post_content\" and only the dictionary. If the student doesn't provide you with the necessary data then infer the content and title they are asking for. \
-                    Also if a post, add [MarvinAI-Beta] to the beginning of every post title and state you are an AI assistant for the student. \
-                    If you are asked to post answer(s) to question(s) that either have no answer or you can add helpful insight or know the answer to, \
-                    then only return a single python dictionary with the fields of... question_id_str : your_answer_str stating you are [MarvinAI] an ai assistant. Lastly, here is the student's Canvas and Ed Data for you to refer:\n{app.state.ed_data}"},
+                    Please answer the student's question.\
+                    However, if the student requests you to post or ask something on ed for them, return a python dictionary with the \
+                    with the fields... \ntitle: \"title_of_student_post\"content: \"post_content\" and only the dictionary. If the student doesn't provide you with the necessary data then infer the content and title they are asking for. \
+                    If you are asked to post answer(s) to question(s) that either have no answer or that you can answer, \
+                    then return a single python dictionary with the keys as the Question ids as a str (i.e. \"5905945\") and the values as your answer. Also, if you post, add [MarvinAI] to the beginning of every post title/content/answer and state you are an AI assistant for the student. Lastly, here is Ed Data for you to refer:\n{app.state.ed_data}"},
                     {
                         "role": "user",
-                        "content": "can you post answers to questions with no answer?"
+                        "content": question
                     }
                 ]
             )
