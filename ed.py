@@ -6,7 +6,8 @@ from requests.compat import urljoin
 from edapi import EdAPI
 from edapi.constants import ThreadType
 from edapi.utils import new_document, parse_content
-
+from pathlib import Path
+from dotenv import load_dotenv
 
 def student_name(user_info):
     user = user_info['user']
@@ -139,11 +140,75 @@ def get_threads(ed: EdAPI, threads, id, name):
     
     return s
 
+
+
+
+def save_api_key(api_key: str, env_file: str = ".env") -> bool:
+    
+    try:
+        env_path = Path(env_file)
+        
+        # If .env exists, read existing content
+        if env_path.exists():
+            with open(env_path, 'r') as file:
+                lines = file.readlines()
+            
+            # Check if API_KEY already exists
+            api_key_exists = False
+            for i, line in enumerate(lines):
+                if line.startswith('ED_API_TOKEN='):
+                    lines[i] = f'ED_API_TOKEN=\"{api_key}\"\n'
+                    api_key_exists = True
+                    break
+            
+            # If API_KEY not found, append it
+            if not api_key_exists:
+                lines.append(f'\nED_API_TOKEN=\"{api_key}\"\n')
+                
+            # Write back all lines
+            with open(env_path, 'w') as file:
+                file.writelines(lines)
+        
+        else:
+            # Create new .env file with API key
+            with open(env_path, 'w') as file:
+                file.write(f'ED_API_TOKEN=\"{api_key}\"\n')
+        
+        # Reload environment variables
+        load_dotenv(override=True)
+        return True
+        
+    except Exception as e:
+        print(f"Error saving API key: {e}")
+        return False
+
+def post_comment(ed: EdAPI, thread_id: int, content: str):
+    discussion_soup, document = new_document()
+    p = discussion_soup.new_tag("paragraph")
+    p.string = content
+    document.append(p)
+    thread_url = urljoin("https://us.edstem.org/api/", f"threads/{thread_id}/comments")
+    response = ed.session.post(thread_url, json={"comment": {"content":str(document),"is_annymous":True,"is_private":False,"type":"comment"}})
+    if not response.ok:
+        raise Exception(f"Failed to post comment in thread {thread_id}.", response.content)
+
+def post_answer(ed: EdAPI, thread_id: int, content: str):
+    discussion_soup, document = new_document()
+    p = discussion_soup.new_tag("paragraph")
+    p.string = content
+    document.append(p)
+    thread_url = urljoin("https://us.edstem.org/api/", f"threads/{thread_id}/comments")
+    response = ed.session.post(thread_url, json={"comment": {"content":str(document),"is_annymous":True,"is_private":False,"type":"answer"}})
+    if not response.ok:
+        raise Exception(f"Failed to post comment in thread {thread_id}.", response.content)
+
 if __name__ == "__main__":
+    
     ed = EdAPI()
     ed.login()
     user_info = ed.get_user_info()
     
+    post_answer(ed, 5764373, "test")
     # student_name(user_info)
 
     # ml ed discussion

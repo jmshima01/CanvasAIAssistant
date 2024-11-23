@@ -23,6 +23,7 @@ app.add_middleware(
     allow_methods=["*"],  # Allows all methods
     allow_headers=["*"],  # Allows all headers
 )
+
 # User session instances
 app.state.EdSession = None
 app.state.CanvasSession = None
@@ -51,11 +52,20 @@ def canvas_login(canvas_token: str, canvas_url="https://elearning.mines.edu"):
 
     return app.state.canvas_data
 
+# assume smart user puts in valid key otherwise edapi hangs on purpose >:(
 @app.post("/login/edstem")
 def edstem_login(ed_token: str):
     try:
-        ed = EdAPI()
-        ed.login()
+        res = save_api_key(ed_token) # ed api only allows token in .env
+        if res:
+            ed = EdAPI()
+            ed.login()
+        else:
+            raise HTTPException(
+            status_code=403,
+            detail="Bad ed token"
+        )
+
     except:
         raise HTTPException(
             status_code=400,
@@ -145,17 +155,20 @@ def ask_ed(question: str):
                     {"role": "system", "content": f"You are a assistant for Ed-stem a Q&A. \
                     Answer the student's question.\
                     In addition, if the student requests you to post or ask something on ed for them, only return a single python dictionary with the \
-                    fields...\ntitle: \"title_of_student_post\"content: \"post_content\" and only the dictionary. If the student doesn't provide you with the necessary data then infer the content and title they are asking for.\
-                    Also if a post, add [MarvinAI-Beta] to the beginning of every post title and state you are an AI assistant for the student.\nLastly, here is the student's Canvas and Ed Data for you to refer:\n{app.state.ed_data}"},
+                    fields...\ntitle: \"title_of_student_post\"content: \"post_content\" and only the dictionary. If the student doesn't provide you with the necessary data then infer the content and title they are asking for. \
+                    Also if a post, add [MarvinAI-Beta] to the beginning of every post title and state you are an AI assistant for the student. \
+                    If you are asked to post answer(s) to question(s) that either have no answer or you can add helpful insight or know the answer to, \
+                    then only return a single python dictionary with the fields of... question_id_str : your_answer_str stating you are [MarvinAI] an ai assistant. Lastly, here is the student's Canvas and Ed Data for you to refer:\n{app.state.ed_data}"},
                     {
                         "role": "user",
-                        "content": question
+                        "content": "can you post answers to questions with no answer?"
                     }
                 ]
             )
 
             response = chat.choices[0].message.content
             is_post = re.search("\{\s*(\"|\')title(\"|\')\s*:\s*(\"|\').*(\"|\')\s*,\s*(\"|\')content(\"|\')\s*:\s*(\"|\').*(\"|\')\s*,?\s*\}", response)
+            is_answer = re.search("\{[\s\S]*\}", response) # assuming otherwise a dict resp from marvin is a post answers dict could make this more exhastive...
             if is_post is not None:
                 try:
                     post = json.loads(str(is_post.group()))
@@ -166,6 +179,15 @@ def ask_ed(question: str):
                 except Exception as e:
                     print(f"Error posting question on ed request: {e}")
                     return f"Error posting question on ed request: {e}"
+            elif is_answer:
+                s = ""
+                try:
+                    for k,v in json.loads(str(is_answer.group())).items():
+                        post_answer(app.state.EdSession, int(k), v)
+                        s += f"I posted {v} @ thread: {k}\n"
+                    return s      
+                except Exception as e:
+                    return f"I failed trying to post answers, try asking again :( - Marvin\n{response}\n{e}"
             else:
                 return response
         else:
