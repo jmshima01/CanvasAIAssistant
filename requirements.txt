@@ -4,7 +4,3 @@ canvasapi
 python-dotenv
 edapi
 openai
-langchain
-tiktoken
-langchain-community
-faiss-gpu
