@@ -15,12 +15,12 @@ https://youtu.be/COIYhoyWJ1Y
 
 
 ## Start FastAPI
-`make build`
+`make` or `make build`
 
 ## Start Marvin
 ```
 cd marvin
-npm install
+npm install # for first time only
 npm run dev
 ```
 
