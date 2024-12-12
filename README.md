@@ -1,6 +1,9 @@
 # MarvinAI
 AI Assistant for Canvas and Edstem Discusion
-https://youtu.be/COIYhoyWJ1Y
+
+## Best ML/AI Project in Class!
+![image](https://github.com/user-attachments/assets/c93d1ca4-6041-4f47-8c79-90ba8758e5b3)
+
 
 ## Dependencies:
 `python3.10+`
